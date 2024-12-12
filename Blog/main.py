@@ -147,7 +147,7 @@ def register():
     return render_template("register.html", form=form, current_user=current_user)
 
 
-@app.route('/login', methods=["GET", "POST"])
+@app.route('/', methods=["GET", "POST"])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -176,7 +176,7 @@ def logout():
     return redirect(url_for('get_all_posts'))
 
 
-@app.route('/')
+@app.route('/get_all_posts')
 def get_all_posts():
     result = db.session.execute(db.select(BlogPost))
     posts = result.scalars().all()
